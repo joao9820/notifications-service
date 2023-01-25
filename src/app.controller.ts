@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MailService } from './mail/mail.service';
 import { PrismaService } from './prisma.service';
 import {randomUUID} from 'node:crypto';
+import { CreateNotificationBody } from './create-notification-body';
 
 //O nestjs utiliza um conceito chamado decorator através do '@' os decorators (decorar) acoplam funcionamento de uma maneira mágica à aplicação
 //O decorator Controller transforma a classe a baixo em uma controller
@@ -21,7 +22,7 @@ export class AppController {
 
   //Para obter o corpo da requisição, o nest também utiliza decorators nesse caso um que se chama body
   @Post()
-  async create(@Body() body: any){
+  async create(@Body() body: CreateNotificationBody){
 
     const {recipientId, content, category} = body;
     //console.log(body);
