@@ -1,3 +1,4 @@
+import { Replace } from "../helpers/Replace";
 import { Content } from "./Content";
 
 
@@ -16,11 +17,14 @@ export class Notification {
   private props: NotificationProps;
   //private content: string;
 
-  constructor(props: NotificationProps) {
+  constructor(props: Replace<NotificationProps, {createdAt?:Date}>) {
     /*isso para evitar que ao criar um objeto e tentar setar um valor a um atributo exemplo: notification.content = "teste" 
     a classe não reclame de identificadores duplicados (o que também porderia ser resolvido utilizar set e get antes de content, ex: 
       setContent seria diferente do attr content)*/
-    this.props = props;
+    this.props = {
+      ...props,
+      createdAt: props.createdAt ?? new Date(),
+    };
   }
 
 
