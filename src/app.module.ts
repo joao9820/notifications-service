@@ -1,24 +1,23 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './infra/app.controller';
 import { AppService } from './infra/app.service';
+import { DataBaseModule } from './infra/database/prisma/prisma.module';
+import HttpModule from './infra/http/controllers/http.module';
+import { NotificationsController } from './infra/http/controllers/notifications.controller';
 import { MailService } from './infra/mail/mail.service';
 import { SMTPMailService } from './infra/mail/smtp-mail.service';
-import { PrismaService } from './infra/prisma.service';
-
 
 @Module({
   //O Module acopla vários controllers e vários services, um Module pode importar outro também
-  imports: [],
-  controllers: [AppController],
+  imports: [HttpModule, DataBaseModule],
   //Automaticamente o nest passa uma instancia da classe AppService dentro do constructor do controller
-  providers: [AppService, 
+  /* providers: [AppService, 
     PrismaService,
     //Ao utilizar classes abstratas ou interfaces devemos utilizar dessa forma
     {
      provide: MailService,
      useClass: SMTPMailService       
     }
-  ],
+  ], */
 })
 export class AppModule {}
 

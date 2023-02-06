@@ -1,5 +1,6 @@
 //Os services no curso estão sendo chamados de useCases
 
+import { Injectable } from "@nestjs/common";
 import { Content } from "../entities/Content";
 import { Notification } from "../entities/Notification";
 import { NotificationRepository } from "../repositories/NotificationRepository";
@@ -16,9 +17,8 @@ interface SendNotificationResponse {
 }
 
 
-
-
-
+//O código antes do injectable, era um código limpo que poderia ser utilizado em qualuqer aplicação ts, porém agora está acoplado ao nest, por conta do decorator a baixo
+//@Injectable()
 export class SendNotificationService {
   
   private notificationRepository: NotificationRepository;
@@ -40,6 +40,9 @@ export class SendNotificationService {
     });
 
     //Persistir notification no BD
+
+    //Está retornando undefined, porque está utilizando uma classe abstrata sem a referencia da classe real
+    console.log(this.notificationRepository);
 
     this.notificationRepository.create(notification);
 

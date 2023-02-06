@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
 import { Content } from "./Content";
 
@@ -14,6 +15,7 @@ interface NotificationProps {
 }
 
 export class Notification {
+  private _id: string; //_id pois o método get pode se chamar id apenas, se fosse o mesmo nome não poderia
   private props: NotificationProps;
   //private content: string;
 
@@ -21,12 +23,17 @@ export class Notification {
     /*isso para evitar que ao criar um objeto e tentar setar um valor a um atributo exemplo: notification.content = "teste" 
     a classe não reclame de identificadores duplicados (o que também porderia ser resolvido utilizar set e get antes de content, ex: 
       setContent seria diferente do attr content)*/
+    this._id = randomUUID(); //gera o id único universal
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
     };
   }
 
+  public get id(){
+    //Futuramente, como todas as entinties possuem um id, pode se criar uma classe separada para tal informação e importá-la
+    return this._id;
+  }
 
   public set recipientId(recipientId: string){
     this.props.recipientId = recipientId;
