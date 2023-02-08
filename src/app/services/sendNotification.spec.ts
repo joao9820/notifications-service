@@ -5,6 +5,10 @@ describe('Send Notification', () => {
 
   test('Deve ser possível enviar uma notificação', async () => {
 
+    /*Usar banco de dados InMemory agiliza os testes unitários, sendo que não é preciso armazenar os dados, apenas em tempo de execução
+    tempos eles guardados, após executar o teste novamente os dados serão novamente armazenados, e os anteriores não são mais existentes.
+    Quando analisamos esse cenário em grande escala, em que devemos fazer vários testes unitário ou até testes end-to-end o ganho em tempo
+    de execução é notório*/
     const notificationRepository = new inMemorynotificationRepository();
 
     const sendNotification = new SendNotificationService(notificationRepository);

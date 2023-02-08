@@ -1,13 +1,16 @@
+import { Injectable } from "@nestjs/common";
 import { Notification } from "src/app/entities/Notification";
 import { NotificationRepository } from "src/app/repositories/NotificationRepository"
 import { PrismaService } from "../prisma.service";
 
+@Injectable()
 export default class PrismaNotificationRepository implements NotificationRepository {
 
   constructor(private prisma: PrismaService){}
 
   async create(notification: Notification): Promise<void> {
 
+    //O destruct que fazemos aqui acessa diretamente os métodos com o modificador get, como se fossem atributos da classe
     const {id, content, category, recipientId, readAt, createdAt} = notification;
     
     await this.prisma.notification.create({
