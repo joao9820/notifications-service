@@ -1,10 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './infra/app.service';
 import { DataBaseModule } from './infra/database/database.module';
 import HttpModule from './infra/http/controllers/http.module';
-import { NotificationsController } from './infra/http/controllers/notifications.controller';
-import { MailService } from './infra/mail/mail.service';
-import { SMTPMailService } from './infra/mail/smtp-mail.service';
 
 @Module({
   //O Module acopla vários controllers e vários services, um Module pode importar outro também

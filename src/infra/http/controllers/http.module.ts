@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { SendNotificationService } from "src/app/services/SendNotificationService";
-import { DataBaseModule } from "src/infra/database/database.module";
+import { SendNotificationService } from "@application/services/SendNotificationService";
+import { DataBaseModule } from "@infra/database/database.module";
 import { NotificationsController } from "./notifications.controller";
 
 //O SendNotificationService precisa do NotificationRepository, então utilizamos o module de database que já nos fornece essa informação

@@ -1,4 +1,5 @@
-import { inMemorynotificationRepository } from "../../../test/repositories/inMemoryNotificationRepository";
+//Aqui não foi possível colocar o alias path de test, não encontra o inMemorynotificationRepository
+import { inMemoryNotificationRepository } from "../../../test/repositories/inMemoryNotificationRepository";
 import { SendNotificationService } from "./SendNotificationService";
 
 describe('Send Notification', () => {
@@ -9,7 +10,7 @@ describe('Send Notification', () => {
     tempos eles guardados, após executar o teste novamente os dados serão novamente armazenados, e os anteriores não são mais existentes.
     Quando analisamos esse cenário em grande escala, em que devemos fazer vários testes unitário ou até testes end-to-end o ganho em tempo
     de execução é notório*/
-    const notificationRepository = new inMemorynotificationRepository();
+    const notificationRepository = new inMemoryNotificationRepository();
 
     const sendNotification = new SendNotificationService(notificationRepository);
   

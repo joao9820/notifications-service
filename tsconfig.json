@@ -18,6 +18,12 @@
     "strictBindCallApply": false,
     "strictPropertyInitialization": false, //Dessa forma não precisamos inicializar as propriedades, por exemplo, para os DTOs
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@application/*":["./src/app/*"],
+      "@helpers/*":["./src/helpers/*"],
+      "@infra/*":["./src/infra/*"],
+      "@test/*":["./test/*"],
+    }
   }
 }
