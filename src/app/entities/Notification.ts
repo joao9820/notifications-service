@@ -11,7 +11,7 @@ interface NotificationProps {
   uma notificação poderíamos setar null, para que apenas quando o usuário lesse novamente, o valor de Date fosse setado, por isso precisamos 
   dos 3 tipos*/
   readAt?: Date | null; 
-  cancelAt?: Date | null;
+  canceledAt?: Date | null;
   createdAt: Date;
 }
 
@@ -73,6 +73,14 @@ export class Notification {
 
   public get readAt(): Date | null | undefined{
     return this.props.readAt;
+  }
+
+  public cancel(){
+    this.props.canceledAt = new Date();
+  }
+
+  public get canceledAt(){
+    return this.props.canceledAt;
   }
 
   //Não precisamos de um método set para data de criação, apenas precisamos buscar esse valor que é setado pelo próprio DB
