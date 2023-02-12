@@ -11,6 +11,7 @@ interface NotificationProps {
   uma notificação poderíamos setar null, para que apenas quando o usuário lesse novamente, o valor de Date fosse setado, por isso precisamos 
   dos 3 tipos*/
   readAt?: Date | null; 
+  cancelAt?: Date | null;
   createdAt: Date;
 }
 

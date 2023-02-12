@@ -2,6 +2,7 @@ import { Controller} from '@nestjs/common';
 import { Body, Post } from '@nestjs/common/decorators';
 import { SendNotificationService } from '@application/services/SendNotificationService';
 import { CreateNotificationBody } from './dtos/create-notification-body';
+import NotificationsControllerMapper from './mapper/NotificationControllerMapper';
 
 
 //O nestjs utiliza um conceito chamado decorator através do '@' os decorators (decorar) acoplam funcionamento de uma maneira mágica à aplicação
@@ -16,7 +17,7 @@ export class NotificationsController {
   @Post()
   async create(@Body() body: CreateNotificationBody){
 
-    const {recipientId, content, category} = body;
+    const {content, category, recipientId} = body;    
 
     const {notification} = await this.sendNotification.execute({
       content,
@@ -24,7 +25,9 @@ export class NotificationsController {
       recipientId
     });
 
-    return {notification};
+    return {
+        notification: NotificationsControllerMapper.toHttp(notification),
+    };
 
   }
 
