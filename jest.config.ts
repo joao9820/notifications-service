@@ -1,11 +1,16 @@
+import {Config} from 'jest';
+import {pathsToModuleNameMapper} from 'ts-jest';
+import {compilerOptions} from './tsconfig.json';
+
+//console.log(compilerOptions.paths);
 //Retiramos a configuração do Jest de dentro do package json, que o nest já traz por padrão
-export default {
+//Ao utilizar o json aqui no jest.config, não é possível adiconar comentários no tsconfig.json
+const config: Config =  {
   "moduleFileExtensions": [
     "js",
     "json",
     "ts"
   ],
-  "rootDir": "src",
   "testRegex": ".*\\.spec\\.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
@@ -14,5 +19,10 @@ export default {
     "**/*.(t|j)s"
   ],
   "coverageDirectory": "../coverage",
-  "testEnvironment": "node"
+  "testEnvironment": "node",
+  "moduleNameMapper": pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: '<rootDir>/',
+  }),
 };
+
+export default config;
