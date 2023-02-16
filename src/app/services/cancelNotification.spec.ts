@@ -1,6 +1,5 @@
 //Aqui não foi possível colocar o alias path de test, não encontra o inMemorynotificationRepository
-import { Content } from "@application/entities/Content";
-import { Notification } from "@application/entities/Notification";
+import { makeNotification } from "@test/factories/notificationFactory";
 import { inMemoryNotificationRepository } from "../../../test/repositories/inMemoryNotificationRepository";
 import { CancelNotificationService } from "./CancelNotificationService";
 import { NotificationNotFound } from "./errors/NotificationNotFound";
@@ -15,11 +14,7 @@ describe('Cancel Notification', () => {
     de execução é notório*/
     const notificationRepository = new inMemoryNotificationRepository();
 
-    const notification = new Notification({
-      category: 'Social',
-      content: new Content('Você possui uma nova solicitação de amizade'),
-      recipientId: 'example-recipient-id'
-    });
+    const notification = makeNotification();
 
     notificationRepository.create(notification);
 

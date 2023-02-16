@@ -3,7 +3,7 @@ import { Replace } from "@helpers/Replace";
 import { Content } from "./Content";
 
 
-interface NotificationProps {
+export interface NotificationProps {
   recipientId: string;
   content: Content;
   category: string;
@@ -67,8 +67,16 @@ export class Notification {
   /*o Typescript tem algumas formas de checagem, com o strict mode ativado, no tsconfig.json ele realiza uma checagem de tipo mais
   profunda, é necessário ativar para entender que readAt deve ser Date | null | undefined, pois dessa forma considera o null e undefined
   como possíveis valores de retorno e de envio*/
-  public set readAt(readAt: Date | null | undefined){
+  /* public set readAt(readAt: Date | null | undefined){
     this.props.readAt = readAt;
+  } */
+
+  public read(){
+    this.props.readAt = new Date();
+  }
+
+  public unread(){
+    this.props.readAt = null;
   }
 
   public get readAt(): Date | null | undefined{
