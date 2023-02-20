@@ -5,6 +5,14 @@ import { PrismaClient } from '@prisma/client';
 ele execute algo, nesse caso, realize a conexão com o prisma */
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
+
+  //Ativar se necessário verificar as querys no log do terminal
+  /* constructor(){
+    super({
+      log: ['query']
+    })
+  } */
+
   async onModuleInit() {
     await this.$connect();
   }

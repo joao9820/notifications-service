@@ -20,11 +20,11 @@ export class Notification {
   private props: NotificationProps;
   //private content: string;
 
-  constructor(props: Replace<NotificationProps, {createdAt?:Date}>) {
+  constructor(props: Replace<NotificationProps, {createdAt?:Date}>, id?: string) {
     /*isso para evitar que ao criar um objeto e tentar setar um valor a um atributo exemplo: notification.content = "teste" 
     a classe não reclame de identificadores duplicados (o que também porderia ser resolvido utilizar set e get antes de content, ex: 
       setContent seria diferente do attr content)*/
-    this._id = randomUUID(); //gera o id único universal
+    this._id = id ?? randomUUID(); //gera o id único universal
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
