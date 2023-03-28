@@ -1,6 +1,8 @@
 //Os services no curso estão sendo chamados de useCases
 
+import { NotificationCreatedEvent } from "@application/events/notificationCreated.event";
 import { Injectable } from "@nestjs/common";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 import { Content } from "../entities/Content";
 import { Notification } from "../entities/Notification";
 import { NotificationRepository } from "../repositories/NotificationRepository";
@@ -22,7 +24,7 @@ interface SendNotificationResponse {
 export class SendNotificationService {
 
   //O atributo poderia ser declarado no construct, colocando private antes de notificationRepository
-  constructor(private notificationRepository: NotificationRepository){
+  constructor(private notificationRepository: NotificationRepository, private eventEmitter: EventEmitter2){
     this.notificationRepository = notificationRepository;
   }
 
@@ -39,6 +41,11 @@ export class SendNotificationService {
 
     //Persistir notification no BD
     this.notificationRepository.create(notification);
+
+    const notificationCreatedEvent = new NotificationCreatedEvent('<h1>Hello</h1>')
+    this.eventEmitter.emit('notification.created', notificationCreatedEvent);
+
+    //this.eventEmitter.emit()
 
     /*Retornamos como um objeto, porque se for necessário retornar mais coisas futuramente, não precisamos alterar a interface,
     que ainda retornará um objeto, porém com mais atributos*/

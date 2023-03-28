@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { DataBaseModule } from './infra/database/database.module';
 import HttpModule from './infra/http/controllers/http.module';
 
 @Module({
   //O Module acopla vários controllers e vários services, um Module pode importar outro também
-  imports: [HttpModule, DataBaseModule],
+  imports: [HttpModule, DataBaseModule, EventEmitterModule.forRoot()],
   //Automaticamente o nest passa uma instancia da classe AppService dentro do constructor do controller
   /* providers: [AppService, 
     PrismaService,
