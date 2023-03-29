@@ -15,10 +15,10 @@ async function bootstrap() {
   const host = configService.get('RABBITMQ_HOST');
   const queueName = configService.get('RABBITMQ_QUEUE_NAME'); */
 
-  await app.connectMicroservice<MicroserviceOptions>({
+   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://localhost:15672'],
+      urls: ['amqp://localhost:5672'],
       queue: 'email_queue',
       queueOptions: {
         durable: true
@@ -26,10 +26,10 @@ async function bootstrap() {
     },
   });
 
-  await app.startAllMicroservices();
-
   //Necessário para trabalhar com validação no Nest
   app.useGlobalPipes(new ValidationPipe());
+
+  await app.startAllMicroservices();
 
   await app.listen(3000);
 }

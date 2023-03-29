@@ -7,7 +7,7 @@ import { NotificationCreatedEvent } from '../events/notificationCreated.event';
 export class NotificationCreatedHandler {
   constructor(
     private readonly mailService: SendEmailService,
-    private readonly eventEmitter: EventEmitter2,
+    //private readonly eventEmitter: EventEmitter2,
   ) {}
 
   @OnEvent('notification.created')

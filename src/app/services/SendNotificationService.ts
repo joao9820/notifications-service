@@ -42,7 +42,7 @@ export class SendNotificationService {
     //Persistir notification no BD
     this.notificationRepository.create(notification);
 
-    const notificationCreatedEvent = new NotificationCreatedEvent('<h1>Hello</h1>')
+    const notificationCreatedEvent = new NotificationCreatedEvent('dummy@gmail.com')
     this.eventEmitter.emit('notification.created', notificationCreatedEvent);
 
     //this.eventEmitter.emit()
