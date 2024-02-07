@@ -1,7 +1,6 @@
-import { randomUUID } from "node:crypto";
-import { Replace } from "@helpers/Replace";
-import { Content } from "./Content";
-
+import { randomUUID } from 'node:crypto';
+import { Replace } from '@helpers/Replace';
+import { Content } from './Content';
 
 export interface NotificationProps {
   recipientId: string;
@@ -10,7 +9,7 @@ export interface NotificationProps {
   /*Null aqui seria um valor vazio, por exemplo ao criar uma notificação não precisamos passar readAt, porém ao atualizar
   uma notificação poderíamos setar null, para que apenas quando o usuário lesse novamente, o valor de Date fosse setado, por isso precisamos 
   dos 3 tipos*/
-  readAt?: Date | null; 
+  readAt?: Date | null;
   canceledAt?: Date | null;
   createdAt: Date;
 }
@@ -20,7 +19,10 @@ export class Notification {
   private props: NotificationProps;
   //private content: string;
 
-  constructor(props: Replace<NotificationProps, {createdAt?:Date}>, id?: string) {
+  constructor(
+    props: Replace<NotificationProps, { createdAt?: Date }>,
+    id?: string,
+  ) {
     /*isso para evitar que ao criar um objeto e tentar setar um valor a um atributo exemplo: notification.content = "teste" 
     a classe não reclame de identificadores duplicados (o que também porderia ser resolvido utilizar set e get antes de content, ex: 
       setContent seria diferente do attr content)*/
@@ -31,36 +33,36 @@ export class Notification {
     };
   }
 
-  public get id(){
+  public get id() {
     //Futuramente, como todas as entinties possuem um id, pode se criar uma classe separada para tal informação e importá-la
     return this._id;
   }
 
-  public set recipientId(recipientId: string){
+  public set recipientId(recipientId: string) {
     this.props.recipientId = recipientId;
   }
 
-  public get recipientId(){
+  public get recipientId() {
     return this.props.recipientId;
   }
 
   /*No JS os getters e setters não precisam conter get e set no nome do método, mas é uma palava reservada que define o comportamento
   do método, facilitando a chamada*/
 
-  public set content(content: Content){
+  public set content(content: Content) {
     //Uma das vantagens de setar um atribute através de um setter é que é possível realizar algum tipo de validação antes de passar o valor simplesmente
     this.props.content = content;
   }
 
-  public get content(){
+  public get content() {
     return this.props.content;
   }
 
-  public set category(category: string){
+  public set category(category: string) {
     this.props.category = category;
   }
 
-  public get category(){
+  public get category() {
     return this.props.category;
   }
 
@@ -71,32 +73,30 @@ export class Notification {
     this.props.readAt = readAt;
   } */
 
-  public read(){
+  public read() {
     this.props.readAt = new Date();
   }
 
-  public unread(){
+  public unread() {
     this.props.readAt = null;
   }
 
-  public get readAt(): Date | null | undefined{
+  public get readAt(): Date | null | undefined {
     return this.props.readAt;
   }
 
-  public cancel(){
+  public cancel() {
     this.props.canceledAt = new Date();
   }
 
-  public get canceledAt(){
+  public get canceledAt() {
     return this.props.canceledAt;
   }
 
   //Não precisamos de um método set para data de criação, apenas precisamos buscar esse valor que é setado pelo próprio DB
-  public get createdAt(){
+  public get createdAt() {
     return this.props.createdAt;
   }
-
-
 }
 
 /* Exemplo de instância de Classe  */

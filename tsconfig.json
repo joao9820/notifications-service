@@ -26,5 +26,6 @@
       "@infra/*":["./src/infra/*"],
       "@test/*":["./test/*"]
     }
-  }
+  },
+  "include": ["src"]
 }

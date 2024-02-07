@@ -1,4 +1,4 @@
-import { Notification } from "../entities/Notification";
+import { Notification } from '../entities/Notification';
 
 //O nest lida melhor com classes abstratas para inversão de dependências do que interfaces
 export abstract class NotificationRepository {

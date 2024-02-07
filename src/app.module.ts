@@ -19,5 +19,3 @@ export class AppModule {}
 
 //Injenção de dependência, forma de automatizar a inserção das dependências, quando as classes forem instanciadas, semelhante ao serviceProviders do laravel
 //Para isso basta que a classe tenha o decorator @Injectable
-
-
